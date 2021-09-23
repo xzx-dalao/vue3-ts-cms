@@ -1,27 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <div id="app">
+    <el-config-provider :locale="locale">
+      <router-view></router-view>
+    </el-config-provider>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
-
+import { ElConfigProvider } from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 export default defineComponent({
-  name: 'App',
   components: {
-    HelloWorld
-  }
+    ElConfigProvider
+  },
+  setup() {
+    return {
+      locale: zhCn
+    }
+  },
+  name: 'App'
 })
 </script>
 
 <style lang="less">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 100px;
+  height: 100%;
 }
 </style>
