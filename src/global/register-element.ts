@@ -22,7 +22,8 @@ import {
   ElDialog,
   ElTree,
   ElCard,
-  ElTooltip
+  ElTooltip,
+  ElMessage
 } from 'element-plus'
 // affix.ElAffix,
 // alert.ElAlert,
@@ -111,7 +112,8 @@ const components = [
   ElDialog,
   ElTree,
   ElCard,
-  ElTooltip
+  ElTooltip,
+  ElMessage
 ]
 
 export default function (app: App): void {

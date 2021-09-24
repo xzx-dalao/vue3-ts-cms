@@ -10,6 +10,7 @@ import {
 import { mapMenusToRoutes, mapMenusToPermissions } from '@/utils/map-menus'
 import { IAcount } from '@/service/login/type'
 import LocalCache from '@/utils/cache'
+import { ElMessage } from 'element-plus'
 const LoginModule: Module<ILoginMoudle, IRootState> = {
   namespaced: true,
   state() {
@@ -44,25 +45,37 @@ const LoginModule: Module<ILoginMoudle, IRootState> = {
   actions: {
     async accountLoginAction({ commit, dispatch }, payload: IAcount) {
       //登录逻辑
-      const loginResult = await accountLoginRequest(payload)
-      const { id, token } = loginResult.data
-      commit('changeToken', token)
-      LocalCache.setCache('token', token)
-      // 发送初始化的请求（完整的role和department
-      dispatch('getPageListData', null, { root: true })
-      //请求用户信息
-      const userInfoResult = await requestUserInfoById(id)
-      const userInfo = userInfoResult.data
-      commit('changeUserInfo', userInfo)
-      LocalCache.setCache('userInfo', userInfo)
-      //请求用户的菜单
-      const userMenuResult = await requestUserMenuByRoleId(userInfo.role.id)
-      const userMenus = userMenuResult.data
-      commit('changeUserMenus', userMenus)
-      LocalCache.setCache('userMenus', userMenus)
-
-      //跳到首页
-      router.push('/main')
+      try {
+        const loginResult = await accountLoginRequest(payload)
+        if (loginResult.data) {
+          ElMessage.success({
+            message: '登陆成功',
+            type: 'success'
+          })
+        }
+        const { id, token } = loginResult.data
+        commit('changeToken', token)
+        LocalCache.setCache('token', token)
+        // 发送初始化的请求（完整的role和department
+        dispatch('getPageListData', null, { root: true })
+        //请求用户信息
+        const userInfoResult = await requestUserInfoById(id)
+        const userInfo = userInfoResult.data
+        commit('changeUserInfo', userInfo)
+        LocalCache.setCache('userInfo', userInfo)
+        //请求用户的菜单
+        const userMenuResult = await requestUserMenuByRoleId(userInfo.role.id)
+        const userMenus = userMenuResult.data
+        commit('changeUserMenus', userMenus)
+        LocalCache.setCache('userMenus', userMenus)
+        //跳到首页
+        router.push('/main')
+      } catch (error) {
+        ElMessage.warning({
+          message: '登陆失败',
+          type: 'warning'
+        })
+      }
     },
     loadLoacalLogin({ commit, dispatch }) {
       const token = LocalCache.getCache('token')
