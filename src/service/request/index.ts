@@ -1,16 +1,16 @@
 import axios from 'axios'
 import type { AxiosInstance } from 'axios'
-import type { HYRequestInterceptors, HYrequestConfig } from './type'
+import type { XZXRequestInterceptors, XZXrequestConfig } from './type'
 import { ElLoading } from 'element-plus'
 import { ILoadingInstance } from 'element-plus/lib/components/loading/src/loading.type'
 
 const DEAFULT_LOADING = true
-class HYrequest {
+class XZXrequest {
   instance: AxiosInstance
-  interceptors?: HYRequestInterceptors
+  interceptors?: XZXRequestInterceptors
   loading?: ILoadingInstance
   showLoading: boolean
-  constructor(config: HYrequestConfig) {
+  constructor(config: XZXrequestConfig) {
     // 创建axios实例
     this.instance = axios.create(config)
     // 保存基本信息
@@ -49,7 +49,7 @@ class HYrequest {
         this.loading?.close()
         const data = res.data
         if (data.returnCode === '-1001') {
-          console.log('请求失败~, 错误信息')
+          // console.log('请求失败~, 错误信息')
         } else {
           return data
         }
@@ -61,7 +61,7 @@ class HYrequest {
     )
   }
   // 1.单个请求的拦截处理
-  request<T>(config: HYrequestConfig<T>): Promise<T> {
+  request<T>(config: XZXrequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       if (config.interceptors?.requestInterceptor) {
         config = config.interceptors.requestInterceptor(config)
@@ -87,21 +87,21 @@ class HYrequest {
     })
   }
 
-  get<T>(config: HYrequestConfig<T>): Promise<T> {
+  get<T>(config: XZXrequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
 
-  post<T>(config: HYrequestConfig<T>): Promise<T> {
+  post<T>(config: XZXrequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
 
-  delete<T>(config: HYrequestConfig<T>): Promise<T> {
+  delete<T>(config: XZXrequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
 
-  patch<T>(config: HYrequestConfig<T>): Promise<T> {
+  patch<T>(config: XZXrequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
 
-export default HYrequest
+export default XZXrequest

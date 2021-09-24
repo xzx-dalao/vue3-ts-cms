@@ -12,12 +12,26 @@
           v-if="isCreate"
           size="medium"
           @click="handleNewClick"
-          >新建用户</el-button
+        >
+          {{ contentTableConfig.newBtnTitle ?? '新建数据' }}</el-button
         >
       </template>
       <template #status="{ row }">
-        <el-button plain size="mini" :type="row.enable ? 'success' : 'danger'">
+        <el-button
+          plain
+          size="mini"
+          v-if="row.enable"
+          :type="row.enable ? 'success' : 'danger'"
+        >
           {{ row.enable ? '启用' : '禁用' }}</el-button
+        >
+        <el-button
+          plain
+          size="mini"
+          v-if="row.status"
+          :type="row.status ? 'success' : 'danger'"
+        >
+          {{ row.status ? '上架' : '下架' }}</el-button
         >
       </template>
       <template #createAt="{ row }">

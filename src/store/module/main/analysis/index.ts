@@ -4,7 +4,8 @@ import {
   getCategoryGoodsCount,
   getCategoryGoodsSale,
   getCategoryGoodsFavor,
-  getAddressGoodsSale
+  getAddressGoodsSale,
+  getAmountList
 } from '@/service/main/analysis'
 
 import { IDashboardState } from './types'
@@ -14,6 +15,7 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
   namespaced: true,
   state() {
     return {
+      topPanelDatas: [],
       categoryGoodsCount: [],
       categoryGoodsSale: [],
       categoryGoodsFavor: [],
@@ -21,6 +23,9 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
     }
   },
   mutations: {
+    changeTopPanelDatas(state, list) {
+      state.topPanelDatas = list
+    },
     changeCategoryGoodsCount(state, list: any[]) {
       state.categoryGoodsCount = list
     },
@@ -36,6 +41,8 @@ const dashboardModule: Module<IDashboardState, IRootState> = {
   },
   actions: {
     async getDashboardDataAction({ commit }) {
+      const resultTopPanelDatas = await getAmountList()
+      commit('changeTopPanelDatas', resultTopPanelDatas.data)
       const categoryCountResult = await getCategoryGoodsCount()
       commit('changeCategoryGoodsCount', categoryCountResult.data)
       const categorySaleResult = await getCategoryGoodsSale()

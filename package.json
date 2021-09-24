@@ -4,15 +4,16 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "prettier --write .&&vue-cli-service build",
     "lint": "vue-cli-service lint",
     "prettier": "prettier --write .",
     "prepare": "husky install",
-    "commit": "cz"
+    "commit": "git add .&&cz"
   },
   "dependencies": {
     "axios": "^0.21.4",
     "core-js": "^3.6.5",
+    "countup.js": "^2.0.8",
     "dayjs": "^1.10.7",
     "echarts": "^5.2.1",
     "element-plus": "^1.1.0-beta.9",

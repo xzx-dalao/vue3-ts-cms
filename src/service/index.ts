@@ -1,7 +1,7 @@
-import HYrequest from './request'
+import XZXrequest from './request'
 import { BASE_URL, TIME_OUT } from './request/config'
 import LocalCache from '@/utils/cache'
-const hyRequest = new HYrequest({
+const XZXRequest = new XZXrequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   interceptors: {
@@ -24,4 +24,4 @@ const hyRequest = new HYrequest({
   }
 })
 
-export default hyRequest
+export default XZXRequest

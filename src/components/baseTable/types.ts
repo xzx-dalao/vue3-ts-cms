@@ -10,4 +10,8 @@ export interface ITableContentType {
   showSelectColumn?: boolean
   showIndexColumn?: boolean
   title?: string
+  newBtnTitle?: string
+  childrenProps?: any
+  //分页器
+  showFooter?: boolean
 }

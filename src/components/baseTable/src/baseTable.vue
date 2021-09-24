@@ -30,8 +30,22 @@
       ></el-table-column>
       <template v-for="propItem in propList" :key="propItem.id">
         <el-table-column v-bind="propItem" align="center" show-overflow-tooltip>
+          <!-- 动态的插槽 -->
           <template #default="{ row }">
-            <slot :name="propItem.slotName" :row="row">
+            <slot
+              :name="propItem.slotName"
+              :row="row"
+              v-if="propItem.prop === 'icon'"
+            >
+              <el-button
+                v-if="row[propItem.prop]"
+                :icon="row[propItem.prop]"
+                size="mini"
+                plain
+                type="primary"
+              ></el-button>
+            </slot>
+            <slot :name="propItem.slotName" :row="row" v-else>
               {{ row[propItem.prop] }}
             </slot>
           </template>

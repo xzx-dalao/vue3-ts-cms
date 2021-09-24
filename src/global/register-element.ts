@@ -1,5 +1,4 @@
 import { App } from 'vue'
-import 'element-plus/theme-chalk/base.css'
 import {
   ElButton,
   ElCheckbox,
@@ -22,7 +21,8 @@ import {
   ElImage,
   ElDialog,
   ElTree,
-  ElCard
+  ElCard,
+  ElTooltip
 } from 'element-plus'
 // affix.ElAffix,
 // alert.ElAlert,
@@ -110,7 +110,8 @@ const components = [
   ElImage,
   ElDialog,
   ElTree,
-  ElCard
+  ElCard,
+  ElTooltip
 ]
 
 export default function (app: App): void {

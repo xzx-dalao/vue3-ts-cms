@@ -3,7 +3,7 @@ import * as echarts from 'echarts'
 import chinaMapData from '../data/china.json'
 echarts.registerMap('china', chinaMapData)
 
-export default function (el: HTMLElement) {
+export default function (el: HTMLElement): any {
   const echartInstance = echarts.init(el)
 
   const setOptions = (options: echarts.EChartsOption) => {

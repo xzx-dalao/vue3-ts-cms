@@ -7,4 +7,8 @@ export interface ISystemMoudle {
   goodsCount: number
   menuList: any[]
   menuCount: number
+  departmentList: any[]
+  departmentCount: number
+  categoryCount: number
+  categoryList: any[]
 }

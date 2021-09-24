@@ -114,7 +114,7 @@ export default defineComponent({
     }
   }
 
-  ::v-deep .el-submenu__title {
+  ::v-deep(.el-submenu__title) {
     background-color: #001529 !important;
   }
 

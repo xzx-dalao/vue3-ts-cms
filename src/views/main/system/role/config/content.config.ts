@@ -1,5 +1,7 @@
-export const contentTableConfig = {
+import { ITableContentType } from '@/components/baseTable/types'
+export const contentTableConfig: ITableContentType = {
   title: '角色列表',
+  newBtnTitle: '新建用户',
   propList: [
     { prop: 'name', label: '角色名', minWidth: '100' },
     { prop: 'intro', label: '权限介绍', minWidth: '100' },

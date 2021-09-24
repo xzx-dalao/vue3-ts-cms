@@ -2,7 +2,7 @@ import { ref } from 'vue' //pageModelRef.value!.dialogVisible = true
 import PageModel from '@/components/page-model'
 
 type CallbackFn = (item?: any) => void
-export function usePageModel(newCb?: CallbackFn, editCb?: CallbackFn) {
+export function usePageModel(newCb?: CallbackFn, editCb?: CallbackFn): any {
   const defaultInfo = ref({})
   const pageModelRef = ref<InstanceType<typeof PageModel>>()
   const handleNewData = () => {
